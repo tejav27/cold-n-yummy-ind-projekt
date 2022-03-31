@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Please choose a flavor from the following</p>
+    <form action="/voting" method="post">
+        <select name="flavor" id="flavor">
+            <option value="chocolate">Chocolate</option>
+            <option value="banana">Banana</option>
+            <option value="vanilla">Vanilla</option>
+            <option value="butterscotch">Butterscotch</option>
+            <option value="mango">Mango</option>
+        </select>
+        <label for="username">Your name</label>
+        <input type="text" id="username" name="username">
+        <label for="usermail">Your Email</label>
+        <input type="email" id="usermail" name="usermail">
+        <button>Vote</button>
+    </form>
+</body>
+</html>

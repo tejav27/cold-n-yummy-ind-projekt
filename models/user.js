@@ -5,7 +5,7 @@ class User extends Model{}
 
   User.init(
     {
-      username: {
+      userName: {
         type: DataTypes.TEXT,
         allowNull: false
       },
