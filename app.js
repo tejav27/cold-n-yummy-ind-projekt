@@ -2,7 +2,7 @@ const express = require('express')
 
 const sequelize = require("./database/connection");
 
-const {User, Flavor} = require('./models/index');
+const {User, Flavor,start} = require('./models/index');
 
 const app = express()
 app.set('view engine','ejs')
@@ -21,7 +21,7 @@ app.post('/voting', async (req,res)=>{
         await User.create({
             userName:username,
             email:usermail,
-            foreignKey:flavor
+            FlavorFlavorId:flavor
         })
         res.redirect('/voted')
     }else{
@@ -33,21 +33,5 @@ app.get('/voted',(req,res)=>{
     res.render('voted',{userName : "hello"})
 })
 
-// sequelize.sync({alter:true})
-// .then(result =>{
-//     return Flavor.create({flavorName:"chocolate"})
-// })
-// .then(result =>{
-//     return Flavor.create({flavorName:"banana"})
-// })
-// .then(result =>{
-//     return Flavor.create({flavorName:"vanilla"})
-// })
-// .then(result =>{
-//     return Flavor.create({flavorName:"butterscotch"})
-// })
-// .then(result =>{
-//     return Flavor.create({flavorName:"mango"})
-// })
-
+start()
 app.listen(8080)
