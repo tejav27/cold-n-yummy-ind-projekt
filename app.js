@@ -19,16 +19,18 @@ app.post('/voting', async (req,res)=>{
     //check if user alredy exists
     const dupUser = await User.findOne({ where: { email: usermail } });
     if(!dupUser){
-        await User.create({
-            userName:username,
-            email:usermail,
-            FlavorUser:flavor
-        })
-        Flavor.findOne({ where: {flavorName : flavor}})
+        const v = Flavor.findOne({ where: {flavorName : flavor}})
         .then( votedFlavor => {
-            votedFlavor.update({ numVotes: 1 })
+            votedFlavor.increment('numVotes', { by: 1 })
             // return votedFlavor.increment('numVotes', { by: 1 })
         })
+        console.log("v",v)
+       const newUser = await User.create({
+            userName:username,
+            email:usermail,
+            FlavorFlavorId:v.flavorId
+        })
+        console.log("neewUser:", newUser)
         res.redirect('success')
     }else{
         res.render('failed')

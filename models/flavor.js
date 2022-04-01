@@ -18,7 +18,7 @@ class Flavor extends Model{}
       },
       numVotes:{
         type: DataTypes.INTEGER,
-        allowNull: true
+        defaultValue: 0
       }
     },
     {
