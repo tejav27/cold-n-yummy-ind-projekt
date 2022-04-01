@@ -24,6 +24,7 @@ class Flavor extends Model{}
     {
       sequelize: connection,
       modelName: 'Flavor',
+      timestamps: false
     }
   )
 

@@ -5,22 +5,49 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+
 </head>
 <body>
-    <p>Please choose a flavor from the following</p>
-    <form action="/voting" method="post">
-        <select name="flavor" id="flavor">
-            <option value="chocolate">Chocolate</option>
-            <option value="banana">Banana</option>
-            <option value="vanilla">Vanilla</option>
-            <option value="butterscotch">Butterscotch</option>
-            <option value="mango">Mango</option>
-        </select>
-        <label for="username">Your name</label>
-        <input type="text" id="username" name="username">
-        <label for="usermail">Your Email</label>
-        <input type="email" id="usermail" name="usermail">
-        <button>Vote</button>
-    </form>
+
+    <div class="wrapper">
+        <section>
+            <h2>Our top voted flavors with number of votes</h2>
+            <ul class="flavor-list">
+                <% for(var i=0; i<flavorList.length; i++) {%>
+                    <div class="tabling">
+                        <li><%= flavorList[i].flavorName %></li>
+                        <li><%= flavorList[i].numVotes %></li>
+                    </div>
+                <% } %>
+            </ul>
+        </section>
+            <div class="form-wrapper">
+            <h3>Please choose a flavor from the following</h3>
+            <form action="/voting" method="post" class="voting-form">
+                <select name="flavor" id="flavor">
+                    <option value="chocolate">Chocolate</option>
+                    <option value="banana">Banana</option>
+                    <option value="vanilla">Vanilla</option>
+                    <option value="butterscotch">Butterscotch</option>
+                    <option value="mango">Mango</option>
+                    <option value="coconut">Coconut</option>
+                    <option value="strawberry">Strawberry</option>
+                    <option value="pistachio">Pistachio</option>
+                    <option value="mint">Mint</option>
+                    <option value="blueberry">Blueberry</option>
+                    <option value="saltedcaramel">Saltedcaramel</option>
+                    <option value="guava">Guava</option>
+                    <option value="pineapple">Pineapple</option>
+                </select>
+                <label for="username">Your Name *</label>
+                <input type="text" id="username" name="username" required>
+                <label for="usermail">Your Email *</label>
+                <input type="email" id="usermail" name="usermail" required>
+                <button>Vote</button>
+            </form>
+        </div>
+    </div>
+
 </body>
 </html>

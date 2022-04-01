@@ -23,6 +23,7 @@ class User extends Model{}
     {
       sequelize: connection,
       modelName: 'User',
+      timestamps: false
     }
   )
 

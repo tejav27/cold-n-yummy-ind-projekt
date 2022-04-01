@@ -1,0 +1,65 @@
+*{
+    /* margin: 0;
+    padding: 0; */
+    box-sizing: border-box;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+body{
+    background-color: #5cdb95;
+    color: #05386b;
+}
+h1, h2, h3{
+    color: #262725;
+    margin: 10px;
+}
+.flavor-list{
+    list-style: none;
+}
+.wrapper{
+    display: flex;
+}
+.form-wrapper{
+    margin: auto;
+    place-items: center;
+    width:40%;
+    height: 40vh;
+    border: 2px solid ;
+}
+.voting-form{
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    padding: 3rem;
+}
+
+.voting-form input{
+    width: 20rem;
+    height: 1.5rem;
+}
+.voting-form button{
+    background-color: #05386b;
+    color: aliceblue;
+    padding: 0.25rem .75rem;
+    margin-top: 0.5rem;
+    font-size: 1rem;
+}
+.tabling{
+    border: 1px solid #379683;
+    display: flex;
+    width: 10rem;
+    justify-content: space-between;
+    padding: 0.2rem;
+    
+}
+a{
+    background-color: #05386b;
+    color: aliceblue;
+    padding: 0.25rem .75rem;
+    margin-top: 0.5rem; 
+    text-decoration: none;
+}
+
+a:hover,.voting-form button:hover {
+    background-color:#379683;
+    color:#262725;
+}

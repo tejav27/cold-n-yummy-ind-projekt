@@ -18,6 +18,16 @@ async function seed(){
           {flavorName:"vanilla"},
           {flavorName:"butterscotch"},
           {flavorName:"mango"},
+          {flavorName:"coconut"},
+          {flavorName:"strawberry"},
+          {flavorName:"pistachio"},
+          {flavorName:"mint"},
+          {flavorName:"blueberry"},
+          {flavorName:"saltedcaramel"},
+          {flavorName:"almond"},
+          {flavorName:"coffeeoreo"},
+          {flavorName:"guava"},
+          {flavorName:"pineapple"},
         ]) 
 }
 
@@ -28,4 +38,4 @@ async function start(){
 
 start()
 
-module.exports = {User, Flavor,start}
+module.exports = {User, Flavor}
