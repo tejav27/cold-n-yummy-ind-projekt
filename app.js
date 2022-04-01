@@ -1,4 +1,5 @@
 const express = require('express')
+const { Sequelize, DataTypes, Model } = require('sequelize')
 
 const sequelize = require("./database/connection");
 
@@ -21,16 +22,21 @@ app.post('/voting', async (req,res)=>{
         await User.create({
             userName:username,
             email:usermail,
-            FlavorFlavorId:flavor
+            FlavorUser:flavor
         })
-        res.redirect('/voted')
+        Flavor.findOne({ where: {flavorName : flavor}})
+        .then( votedFlavor => {
+            votedFlavor.update({ numVotes: 1 })
+            // return votedFlavor.increment('numVotes', { by: 1 })
+        })
+        res.redirect('success')
     }else{
         res.render('failed')
     }
 })
-app.get('/voted',(req,res)=>{
+app.get('/success',(req,res)=>{
     console.log(req.body)
-    res.render('voted',{userName : "hello"})
+    res.render('success',{userName : "hello"})
 })
 
 start()

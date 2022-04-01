@@ -15,6 +15,10 @@ class Flavor extends Model{}
           autoIncrement:true,
           allowNull:false,
           primaryKey:true
+      },
+      numVotes:{
+        type: DataTypes.INTEGER,
+        allowNull: true
       }
     },
     {

@@ -1,5 +1,4 @@
 const database = require("../database/connection");
-const { Sequelize, DataTypes, Model } = require('sequelize')
 
 
 const User = require('./user')
