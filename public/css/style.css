@@ -36,6 +36,12 @@ h1, h2, h3{
     width: 20rem;
     height: 1.5rem;
 }
+.voting-form select{
+        color: #05386b;
+        height:2rem;
+        font-size: larger;
+        width: 20 rem
+}
 .voting-form button{
     background-color: #05386b;
     color: aliceblue;
