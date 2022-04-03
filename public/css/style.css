@@ -3,12 +3,12 @@
     padding: 0; */
     box-sizing: border-box;
     font-family: 'Dancing Script', cursive;
-font-family: 'Roboto', sans-serif;
 }
 body,html{
     background-color: #5cdb95;
     color: #05386b;
     height: 100%;
+    background-image: linear-gradient(rgb(62, 158, 153),rgb(107, 74, 116));
 }
 h1, h2, h3{
     color: #262725;
