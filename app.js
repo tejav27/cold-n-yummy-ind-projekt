@@ -21,7 +21,7 @@ app.use(
   })
 );
 
-app.get("/", async (req, res) => {
+app.get("/home", async (req, res) => {
   await loadHomePage(res, req);
 });
 
@@ -40,9 +40,15 @@ app.post("/voting", async (req, res) => {
     );
     res.redirect("success");
   } else {
-    res.render("failed");
+    res.render("failed", {message:"Looks like you have already voted. Cannot vote again", link: "/", linkname:"Back to home"});
   }
 });
+
+
+
+app.get("/", (req,res)=>{
+    res.render("welcome")
+})
 
 app.get("/success", (req, res) => {
   res.render("success", { registeredUser: req.session.user.userName });
@@ -52,7 +58,8 @@ app.get("/register", (req, res) => {
   res.render("register");
 });
 
-app.post("/registeruser", async (req, res) => {
+
+app.post("/register", async (req, res) => {
   const { username, password, usermail } = req.body;
   const dupUser = await User.findOne({ where: { email: usermail } });
   if (!dupUser) {
@@ -61,9 +68,9 @@ app.post("/registeruser", async (req, res) => {
       email: usermail,
       password: generateHash(password),
     });
-    res.render("login"); // TO-DO attach a login message
+    res.redirect("login"); // Attach a login message
   } else {
-    res.render("registrationFailed");
+    res.render("failed", {message:"Looks like you have already registered. Login instead", link: "/login", linkname:"Back to Login"});
   }
 });
 
@@ -83,7 +90,7 @@ async function getTopFlavors() {
 
 async function getAllFlavors() {
   return await Flavor.findAll({
-    attributes: ["flavorName","flavorId"],
+    attributes: ["flavorName", "flavorId"],
     raw: true,
   }).then((flavors) =>
     flavors.map((flavor) => ({
@@ -102,7 +109,7 @@ app.get("/login", (req, res) => {
   res.render("login");
 });
 
-app.post("/loginuser", async (req, res) => {
+app.post("/login", async (req, res) => {
   try {
     const { usermail, password } = req.body;
     const user = await User.authenticate(usermail, password);
@@ -110,10 +117,11 @@ app.post("/loginuser", async (req, res) => {
       userName: user.userName,
       userEmail: user.email,
     };
-    await loadHomePage(res, req);
+    // await loadHomePage(res, req);
+    res.redirect("home")
   } catch (error) {
     req.session.errorMessage = error.message;
-    res.render("registrationFailed");
+    res.render("failed", {message:"Invalid credentials. Try login again", link: "/login", linkname:"Login"});
   }
 });
 
@@ -125,10 +133,10 @@ app.post("/logout", (req, res) => {
 
 async function loadHomePage(res, req) {
   res.render("home", {
-      top10Flavors: await getTopFlavors(),
-      user: req.session.user,
-      allFlavors: await getAllFlavors(),
-    });
+    top10Flavors: await getTopFlavors(),
+    user: req.session.user,
+    allFlavors: await getAllFlavors(),
+  });
 }
 
 app.post("/addflavor", async (req, res) => {
@@ -138,4 +146,5 @@ app.post("/addflavor", async (req, res) => {
   });
   res.redirect("success");
 });
+
 app.listen(8081);

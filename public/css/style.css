@@ -2,11 +2,13 @@
     /* margin: 0;
     padding: 0; */
     box-sizing: border-box;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: 'Dancing Script', cursive;
+font-family: 'Roboto', sans-serif;
 }
-body{
+body,html{
     background-color: #5cdb95;
     color: #05386b;
+    height: 100%;
 }
 h1, h2, h3{
     color: #262725;
@@ -69,3 +71,26 @@ a:hover,.voting-form button:hover {
     background-color:#379683;
     color:#262725;
 }
+
+  
+  .wrapper-login, .wrapper-multiple{
+    display: flex;
+    padding :10px;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  .form-container, .multiple-container{
+    padding: 2rem;
+    background-color:#379683;
+    max-width: 500px;
+  }
+  
+  form > * {
+    display: flex;
+    flex-direction: column;
+    margin: 0.5rem;
+    padding: 0.25rem;
+    font-size: 1.2rem;
+  }

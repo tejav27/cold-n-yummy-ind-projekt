@@ -8,14 +8,19 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <form action="/registeruser" method="post">
-      <label for="username">Your Name *</label>
-      <input type="text" id="username" name="username" required />
-      <label for="usermail">Your Email *</label>
-      <input type="email" id="usermail" name="usermail" required />
-      <label for="password">Your Password *</label>
-      <input type="text" id="password" name="password" required />
-      <button>Register Me</button>
-    </form>
+    <div class="wrapper-login">
+      <div class="form-container">
+        <form action="/register" method="post">
+          <label for="username">Your Name *</label>
+          <input type="text" id="username" name="username" required />
+          <label for="usermail">Your Email *</label>
+          <input type="email" id="usermail" name="usermail" required />
+          <label for="password">Your Password *</label>
+          <input type="text" id="password" name="password" required />
+          <button>Register Me</button>
+        </form>
+        <a href="/login">Already registered? Login</a>
+      </div>
+    </div>
   </body>
 </html>
