@@ -40,7 +40,7 @@ app.post("/voting", async (req, res) => {
     );
     res.redirect("success");
   } else {
-    res.render("failed", {message:"Looks like you have already voted. Cannot vote again", link: "/", linkname:"Back to home"});
+    res.render("failed", {message:"Looks like you have already voted. Cannot vote again.Check out our top-voted flavors", link: "/home", linkname:"Back to home"});
   }
 });
 
@@ -68,7 +68,9 @@ app.post("/register", async (req, res) => {
       email: usermail,
       password: generateHash(password),
     });
-    res.redirect("login"); // Attach a login message
+    res.redirect("login"); 
+    // Attach a login message
+    res.render("failed", {message:"Registered Successfully! Please login to continue", link: "/login", linkname:"Login"});
   } else {
     res.render("failed", {message:"Looks like you have already registered. Login instead", link: "/login", linkname:"Back to Login"});
   }
@@ -106,7 +108,7 @@ function generateHash(password) {
 }
 
 app.get("/login", (req, res) => {
-  res.render("login");
+  res.render("login",{regsuccess:false});
 });
 
 app.post("/login", async (req, res) => {

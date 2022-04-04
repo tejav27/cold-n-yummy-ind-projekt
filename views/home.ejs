@@ -8,15 +8,13 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<p>hello <%=user.userName%></p>
-<form action="/logout" method="POST">
-    <button>Logout</button>
-</form>
-<form action="/addflavor" method="post">
-    <label for="flavorname">New flavor you want to add*</label>
-    <input type="text" id="flavorname" name="flavorname" required>
-    <button>Add</button>
-</form>
+<section class="header-home">
+    <h3>Hello <%=user.userName%></h3>
+    <form action="/logout" method="POST">
+        <button>Logout</button>
+    </form>
+</section>
+<section class="main-home">
     <div class="wrapper">
         <section>
             <h2>Our top voted flavors with number of votes</h2>
@@ -30,7 +28,7 @@
                 </ul>
             </section>
             <div class="form-wrapper">
-                <h3>Please choose a flavor from the following</h3>
+                <h2>Please vote your favorite flavor here</h2>
                 <form action="/voting" method="post" class="voting-form">
                     <select name="flavor" id="flavor">
                     <% for(var i=0; i<allFlavors.length; i++) {%>
@@ -41,6 +39,14 @@
             </form>
         </div>
     </div>
-
+</section>
+<section class="add-flavor">
+    <h3>Want to suggest a new flavor we didn't think of??</h3>
+    <form action="/addflavor" method="post">
+        <label for="flavorname">Please add it here*</label>
+        <input type="text" id="flavorname" name="flavorname" required>
+        <button>Add</button>
+    </form>
+</section>
 </body>
 </html>
