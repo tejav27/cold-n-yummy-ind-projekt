@@ -1,12 +1,12 @@
 *{
-    /* margin: 0;
-    padding: 0; */
     box-sizing: border-box;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: 'Dancing Script', cursive;
 }
-body{
-    background-color: #5cdb95;
+body,html{
     color: #05386b;
+    height: 100%;
+    background-image: url("../img/bg.png");
+    background-size:cover;
 }
 h1, h2, h3{
     color: #262725;
@@ -17,12 +17,13 @@ h1, h2, h3{
 }
 .wrapper{
     display: flex;
+    justify-content: space-between;
 }
 .form-wrapper{
     margin: auto;
-    place-items: center;
+    place-items: left;
     width:40%;
-    height: 40vh;
+    height: 15rem;
     border: 2px solid ;
 }
 .voting-form{
@@ -31,6 +32,14 @@ h1, h2, h3{
     place-items: center;
     padding: 3rem;
 }
+
+form > *:not(button){
+    display: flex;
+    flex-direction: column;
+    margin: 0.5rem;
+    padding: 0.25rem;
+    font-size: 1.2rem;
+  }
 
 .voting-form input{
     width: 20rem;
@@ -42,13 +51,6 @@ h1, h2, h3{
         font-size: larger;
         width: 20 rem
 }
-.voting-form button{
-    background-color: #05386b;
-    color: aliceblue;
-    padding: 0.25rem .75rem;
-    margin-top: 0.5rem;
-    font-size: 1rem;
-}
 .tabling{
     border: 1px solid #379683;
     display: flex;
@@ -57,15 +59,47 @@ h1, h2, h3{
     padding: 0.2rem;
     
 }
-a{
+a,button{
     background-color: #05386b;
     color: aliceblue;
-    padding: 0.25rem .75rem;
+    padding: 0.35rem 1rem;
     margin-top: 0.5rem; 
     text-decoration: none;
+    border-radius: 5px;
 }
 
-a:hover,.voting-form button:hover {
+a:hover,.voting-form button:hover, button:hover {
     background-color:#379683;
-    color:#262725;
+    color:#fafafa;
+    border: 2px solid aliceblue;
+    border-radius: 5px;
+    padding: 0.25rem 1rem;
 }
+
+  .wrapper-login, .wrapper-multiple{
+    display: flex;
+    padding :10px;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  .form-container, .multiple-container{
+    padding: 2rem;
+    background-color:#68cab7;
+    max-width: 500px;
+  }
+
+  .header-home{
+      background-color:#05386b;
+      display: flex;
+      justify-content: space-between;
+  }
+  .header-home h3{
+      color: #5cdb95;
+  }
+  .add-flavor{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+  }
