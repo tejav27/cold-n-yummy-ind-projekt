@@ -2,17 +2,12 @@ const bcrypt = require("bcryptjs");
 const express = require("express");
 const session = require("express-session");
 require("dotenv").config();
-
-// const { Sequelize, DataTypes, Model } = require('sequelize')
-// const sequelize = require("./database/connection");
-
 const { User, Flavor } = require("./models/index");
-
 const app = express();
+
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
-// app.use('/css',express.static(__dirname+'public/css'))
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -29,7 +24,6 @@ app.post("/voting", async (req, res) => {
   const { flavor } = req.body;
   const username = req.session.user.userName;
   const usermail = req.session.user.userEmail;
-  //check if user alredy exists
   const dupUser = await User.findOne({ where: { email: usermail } });
   if (!dupUser.FlavorFlavorId) {
     const votedFlavor = await Flavor.findOne({ where: { flavorId: flavor } });
@@ -68,8 +62,6 @@ app.post("/register", async (req, res) => {
       email: usermail,
       password: generateHash(password),
     });
-    res.redirect("login"); 
-    // Attach a login message
     res.render("failed", {message:"Registered Successfully! Please login to continue", link: "/login", linkname:"Login"});
   } else {
     res.render("failed", {message:"Looks like you have already registered. Login instead", link: "/login", linkname:"Back to Login"});
@@ -119,7 +111,6 @@ app.post("/login", async (req, res) => {
       userName: user.userName,
       userEmail: user.email,
     };
-    // await loadHomePage(res, req);
     res.redirect("home")
   } catch (error) {
     req.session.errorMessage = error.message;
@@ -129,7 +120,6 @@ app.post("/login", async (req, res) => {
 
 app.post("/logout", (req, res) => {
   req.session.destroy();
-  //req.session = null
   res.redirect("/login");
 });
 
@@ -146,7 +136,7 @@ app.post("/addflavor", async (req, res) => {
   await Flavor.create({
     flavorName: flavorname,
   });
-  res.redirect("success");
+  res.render("failed", {message:"Thank you for adding a new flavor!! Check out the top voted flavours", link: "/home", linkname:"Back to home"});
 });
 
 app.listen(8081);
