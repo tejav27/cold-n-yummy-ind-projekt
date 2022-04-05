@@ -1,6 +1,5 @@
 const database = require("../database/connection");
 
-
 const User = require('./user')
 const Flavor = require('./flavor')
 

@@ -1,7 +1,6 @@
 const {Model, DataTypes} = require('sequelize')
 const connection = require('../database/connection')
 
-
 class Flavor extends Model{}
 
   Flavor.init(

@@ -68,6 +68,10 @@ a,button{
     border-radius: 5px;
 }
 
+.vote-heading{
+    color: #262725;
+    font-size: larger;
+}
 a:hover,.voting-form button:hover, button:hover {
     background-color:#379683;
     color:#fafafa;
