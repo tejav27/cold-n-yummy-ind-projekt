@@ -34,15 +34,18 @@ app.post("/voting", async (req, res) => {
     );
     res.redirect("success");
   } else {
-    res.render("failed", {message:"Looks like you have already voted. Cannot vote again.Check out our top-voted flavors", link: "/home", linkname:"Back to home"});
+    res.render("confirmationmessage", {
+      message:
+        "Looks like you have already voted. Cannot vote again.Check out our top-voted flavors",
+      link: "/home",
+      linkname: "Back to home",
+    });
   }
 });
 
-
-
-app.get("/", (req,res)=>{
-    res.render("welcome")
-})
+app.get("/", (req, res) => {
+  res.render("welcome");
+});
 
 app.get("/success", (req, res) => {
   res.render("success", { registeredUser: req.session.user.userName });
@@ -51,7 +54,6 @@ app.get("/success", (req, res) => {
 app.get("/register", (req, res) => {
   res.render("register");
 });
-
 
 app.post("/register", async (req, res) => {
   const { username, password, usermail } = req.body;
@@ -62,9 +64,17 @@ app.post("/register", async (req, res) => {
       email: usermail,
       password: generateHash(password),
     });
-    res.render("failed", {message:"Registered Successfully! Please login to continue", link: "/login", linkname:"Login"});
+    res.render("confirmationmessage", {
+      message: "Registered Successfully! Please login to continue",
+      link: "/login",
+      linkname: "Login",
+    });
   } else {
-    res.render("failed", {message:"Looks like you have already registered. Login instead", link: "/login", linkname:"Back to Login"});
+    res.render("confirmationmessage", {
+      message: "Looks like you have already registered. Login instead",
+      link: "/login",
+      linkname: "Back to Login",
+    });
   }
 });
 
@@ -100,7 +110,7 @@ function generateHash(password) {
 }
 
 app.get("/login", (req, res) => {
-  res.render("login",{regsuccess:false});
+  res.render("login", { regsuccess: false });
 });
 
 app.post("/login", async (req, res) => {
@@ -111,10 +121,14 @@ app.post("/login", async (req, res) => {
       userName: user.userName,
       userEmail: user.email,
     };
-    res.redirect("home")
+    res.redirect("home");
   } catch (error) {
     req.session.errorMessage = error.message;
-    res.render("failed", {message:"Invalid credentials. Try login again", link: "/login", linkname:"Login"});
+    res.render("confirmationmessage", {
+      message: "Invalid credentials. Try login again",
+      link: "/login",
+      linkname: "Login",
+    });
   }
 });
 
@@ -124,11 +138,19 @@ app.post("/logout", (req, res) => {
 });
 
 async function loadHomePage(res, req) {
-  res.render("home", {
-    top10Flavors: await getTopFlavors(),
-    user: req.session.user,
-    allFlavors: await getAllFlavors(),
-  });
+  if (req.session.user) {
+    res.render("home", {
+      top10Flavors: await getTopFlavors(),
+      user: req.session.user,
+      allFlavors: await getAllFlavors(),
+    });
+  } else {
+    res.render("confirmationmessage", {
+      message: "Please login/register to vote and checkout top flavors",
+      link: "/",
+      linkname: "Welcome",
+    });
+  }
 }
 
 app.post("/addflavor", async (req, res) => {
@@ -136,7 +158,12 @@ app.post("/addflavor", async (req, res) => {
   await Flavor.create({
     flavorName: flavorname,
   });
-  res.render("failed", {message:"Thank you for adding a new flavor!! Check out the top voted flavours", link: "/home", linkname:"Back to home"});
+  res.render("confirmationmessage", {
+    message:
+      "Thank you for adding a new flavor!! Check out the top voted flavours",
+    link: "/home",
+    linkname: "Back to home",
+  });
 });
 
 app.listen(8081);

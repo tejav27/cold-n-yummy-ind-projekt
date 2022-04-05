@@ -70,7 +70,9 @@ a,button{
 
 .vote-heading{
     color: #262725;
-    font-size: larger;
+    font-size: 1.1rem;
+    padding-left:10px;
+    font-weight: 2rem;
 }
 a:hover,.voting-form button:hover, button:hover {
     background-color:#379683;
