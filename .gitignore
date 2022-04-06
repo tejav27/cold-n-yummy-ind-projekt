@@ -1,2 +1,4 @@
 node_modules
-database
+db.db
+.vscode
+.env
